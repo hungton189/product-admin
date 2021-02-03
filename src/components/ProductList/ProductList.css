@@ -1,0 +1,17 @@
+table
+{
+    border:1px solid rgb(97, 161, 224);
+}
+.product-list .title-product-list
+{
+    background-color:  rgb(97, 161, 224);
+    margin-bottom: 0;
+    padding: 10px 8px;
+    color:aliceblue;
+}
+
+.table td
+{
+    vertical-align: middle;
+    padding: 6px;
+}
