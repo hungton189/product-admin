@@ -1,27 +1,32 @@
 import './App.css';
 import Menu from "./components/Menu/Menu"
-import ProductList from "./components/ProductList/ProductList"
+import routes from "./routes"
+import {Switch,Route,BrowserRouter as Router} from "react-router-dom"
 
 function App() {
+	const showContentMenu = (routes)=>{
+		let result = null;
+		result = routes.map((route,index)=>{
+			return (
+				<Route
+				key={index}
+				path={route.path}
+				component={route.main}
+				exact={route.exact}
+				/>
+			)
+		})
+		return <Switch>{result}</Switch>
+	}
 	return (
-		<div className="App">
-			<Menu />
-			<div className="container mt-50">
-				<div className="row">
-					<div className="col-xs-12 col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12">
-						<button type="button" className="btn btn-primary">
-							<i className="fas fa-plus mr-6"></i>
-							Thêm sản phẩm
-						</button>
-					</div>
-				</div>
-				<div className="row mt-50">
-					<div className="col-xs-12 col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12">
-						<ProductList />
-					</div>
+		<Router>
+			<div className="App">
+				<Menu />
+				<div className="container mt-50">
+					{showContentMenu(routes)}
 				</div>
 			</div>
-		</div>
+		</Router>
 	);
 }
 
