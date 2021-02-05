@@ -20,3 +20,17 @@ export const fetchProductsRequest = ()=>{
         })
     }
 }
+export const deleteProduct = (id) =>{
+    return {
+        type:types.DELETE_PRODUCT,
+        id:id
+    }
+}
+export const deleteProductRequest = (id)=>{
+    return dispatch=>{
+        callApi(`products/${id}`,"DELETE")
+        .then(response=>{
+            dispatch(deleteProduct(id))
+        })
+    }
+}

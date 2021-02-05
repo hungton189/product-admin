@@ -1,13 +1,19 @@
 import "./ProductItem.css";
 import {Link} from "react-router-dom"
+import {useDispatch} from "react-redux"
+import * as actions from "../../actions/ActionTypes"
 
 function ProductItem({product,index}) {
+    const dispatch = useDispatch()
+    const onDeleteProduct = id => {
+        dispatch(actions.deleteProductRequest(id))
+    }
 	return (
     <tr>
         <td>{index+1}</td>
         <td>{product.id}</td>
         <td>{product.name}</td>
-        <td>{product.price}đ</td>
+        <td>{product.price}$</td>
         {
             product.status ?
             <td style={{textAlign:"center"}}>
@@ -26,10 +32,12 @@ function ProductItem({product,index}) {
                 <i className="fas fa-pen mr-6" ></i>
                 Sửa
             </Link>
-            <Link  class="btn btn-danger">
+            <button  class="btn btn-danger"
+                onClick={()=>onDeleteProduct(product.id)}
+            >
                 <i className="fas fa-trash mr-6"></i>
                 Xóa
-            </Link>
+            </button>
         </td>
     </tr>
 	);
