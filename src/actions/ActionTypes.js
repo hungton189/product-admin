@@ -34,3 +34,45 @@ export const deleteProductRequest = (id)=>{
         })
     }
 }
+export const addProduct = (product)=>{
+    return {
+        type: types.ADD_PRODUCT,
+        product
+    }
+}
+export const addProductRequest = (product)=>{
+    return dispatch=>{
+        callApi("products","POST",product)
+        .then(response=>{
+            dispatch(addProduct(response.data));
+        })
+    }
+}
+export const getProductEditing = (product)=>{
+    return {
+        type:types.GET_PRODUCT_EDITING,
+        product:product
+    }
+}
+export const getProductEditingRequest = (id)=>{
+    return dispatch => {
+        callApi(`products/${id}`, "GET")
+        .then(response => {
+            dispatch(getProductEditing(response.data))
+        })
+    }
+}
+export const editProduct = (product)=>{
+    return {
+        type:types.EDIT_PRODUCT,
+        product: product
+    }
+}
+export const editProductRequest = (product)=>{
+    return dispatch=>{
+        callApi(`products/${product.id}`,"PUT",product)
+        .then(response=>{
+            dispatch(editProduct(response.data))
+        })
+    }
+}
