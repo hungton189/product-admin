@@ -1,6 +1,24 @@
 import ProductItem from "../ProductsItem/ProductItem"
-import "./ProductList.css" 
+import "./ProductList.css"
+import {useEffect} from "react"
+import * as actions from "../../actions/ActionTypes"
+import {useSelector,useDispatch} from "react-redux"
+
 function ProductList() {
+    const products = useSelector(state=>state.products);
+    const dispatch = useDispatch();
+    useEffect(()=>{
+        dispatch(actions.fetchProductsRequest())
+    },[])
+    const productElm = products.map((product,index)=>{
+        return (
+            <ProductItem
+            key={product.id}
+            index={index}
+            product={product} 
+            />
+        )
+    })
 	return (
     <div className="product-list">
         <h4 className="title-product-list">Danh sách sản phẩm</h4>
@@ -16,14 +34,12 @@ function ProductList() {
                 </tr>
             </thead>
             <tbody>
-                <ProductItem />
-                <ProductItem />
-                <ProductItem />
-                <ProductItem />
+                {productElm}
             </tbody>
         </table>
     </div>
 	);
 }
+
 
 export default ProductList;

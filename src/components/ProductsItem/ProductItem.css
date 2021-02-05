@@ -1,4 +1,11 @@
-.status-product-item
+.product-item-status
 {
-    text-align: center;
+    padding: 4px 5px;
+    border-radius: 2px;
+    background-color: rgb(35, 140, 201);
+    cursor: pointer;
+}
+.over
+{
+    background-color:rgb(235, 72, 72);
 }
